@@ -25,7 +25,7 @@ export default function VYRONIS() {
   const callAPI = async (endpoint: string, body: RequestBody) => {
     setLoading(true);
     setResult("");
-    const res = await fetch(`http://localhost:5000/${endpoint}`, {
+    const res = await fetch(`https://vyronis-assesment.onrender.com/${endpoint}`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(body),
