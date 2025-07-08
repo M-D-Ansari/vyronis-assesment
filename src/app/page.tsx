@@ -5,7 +5,7 @@ import { useState } from "react";
 // Define the allowed tab types
 type TabType = "summarize" | "translate" | "compare" | "analyze";
 
-// Define the allowed structure of API request body
+// Define the structure of API request body
 type RequestBody = {
   text?: string;
   language?: string;
@@ -20,11 +20,12 @@ export default function VYRONIS() {
   const [lang, setLang] = useState("English");
   const [result, setResult] = useState("");
   const [loading, setLoading] = useState(false);
+  const [showLinks, setShowLinks] = useState(false);
 
   const callAPI = async (endpoint: string, body: RequestBody) => {
     setLoading(true);
     setResult("");
-    const res = await fetch(`https://vyronis-assesment.onrender.com/${endpoint}`, {
+    const res = await fetch(`http://localhost:5000/${endpoint}`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(body),
@@ -35,7 +36,37 @@ export default function VYRONIS() {
   };
 
   return (
-    <main className="min-h-screen bg-gradient-to-br from-[#f8f9fa] to-[#e3e3e3] text-[#0f0f0f] px-6 py-12 font-sans tracking-wide">
+    <main className="min-h-screen bg-gradient-to-br from-[#f8f9fa] to-[#e3e3e3] text-[#0f0f0f] px-6 py-12 font-sans tracking-wide relative">
+      {/* Click-based Links Dropdown */}
+      <div className="absolute top-6 right-6 z-50">
+        <div className="relative">
+          <button
+            onClick={() => setShowLinks((prev) => !prev)}
+            className="px-4 py-2 bg-black text-white rounded-full text-sm font-medium shadow-md hover:opacity-90 transition"
+          >
+            Links
+          </button>
+          {showLinks && (
+            <div className="absolute right-0 mt-2 w-40 bg-white shadow-lg rounded-xl border backdrop-blur-lg overflow-hidden text-sm z-50">
+              <a
+                href="https://github.com/M-D-Ansari/vyronis-assesment"
+                target="_blank"
+                className="block px-4 py-3 hover:bg-gray-100 transition text-black"
+              >
+                GitHub Repo
+              </a>
+              <a
+                href="https://drive.google.com/file/d/1hUMyYQvk7eKVstkYhIOYU6RAtXrj3Aoz/view?usp=drive_link"
+                target="_blank"
+                className="block px-4 py-3 hover:bg-gray-100 transition text-black"
+              >
+                Demo Video
+              </a>
+            </div>
+          )}
+        </div>
+      </div>
+
       <div className="max-w-4xl mx-auto transition-all duration-300">
         <h1 className="text-5xl font-semibold mb-12 text-center leading-tight text-[#111]">
           VYRONIS
@@ -44,7 +75,7 @@ export default function VYRONIS() {
           </span>
         </h1>
 
-        {/* Elite Tab Menu */}
+        {/* Tabs */}
         <div className="flex justify-center gap-3 mb-10">
           {(["summarize", "translate", "compare", "analyze"] as const).map((t) => (
             <button
@@ -61,7 +92,7 @@ export default function VYRONIS() {
           ))}
         </div>
 
-        {/* Action Panels */}
+        {/* Panels */}
         <div className="bg-white/60 border backdrop-blur-lg rounded-2xl p-6 shadow-lg transition-all duration-300 space-y-4">
           {tab === "summarize" && (
             <>
