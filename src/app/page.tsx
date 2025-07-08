@@ -2,18 +2,29 @@
 
 import { useState } from "react";
 
+// Define the allowed tab types
+type TabType = "summarize" | "translate" | "compare" | "analyze";
+
+// Define the allowed structure of API request body
+type RequestBody = {
+  text?: string;
+  language?: string;
+  doc1?: string;
+  doc2?: string;
+};
+
 export default function VYRONIS() {
-  const [tab, setTab] = useState<"summarize" | "translate" | "compare" | "analyze">("summarize");
+  const [tab, setTab] = useState<TabType>("summarize");
   const [input1, setInput1] = useState("");
   const [input2, setInput2] = useState("");
   const [lang, setLang] = useState("English");
   const [result, setResult] = useState("");
   const [loading, setLoading] = useState(false);
 
-  const callAPI = async (endpoint: string, body: any) => {
+  const callAPI = async (endpoint: string, body: RequestBody) => {
     setLoading(true);
     setResult("");
-    const res = await fetch(`http://localhost:5000/${endpoint}`, {
+    const res = await fetch(`https://vyronis-assesment.onrender.com/${endpoint}`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(body),
@@ -35,10 +46,10 @@ export default function VYRONIS() {
 
         {/* Elite Tab Menu */}
         <div className="flex justify-center gap-3 mb-10">
-          {["summarize", "translate", "compare", "analyze"].map((t) => (
+          {(["summarize", "translate", "compare", "analyze"] as const).map((t) => (
             <button
               key={t}
-              onClick={() => setTab(t as any)}
+              onClick={() => setTab(t)}
               className={`px-6 py-2.5 rounded-full font-medium transition-all duration-200 tracking-wide text-sm backdrop-blur ${
                 tab === t
                   ? "bg-black text-white shadow-xl"
