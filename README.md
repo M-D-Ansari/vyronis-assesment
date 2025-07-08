@@ -1,36 +1,153 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🚀 VYRONIS — AI Companion for Space Research Teams
 
-## Getting Started
+**VYRONIS** is a lightweight full-stack AI tool designed to support space project researchers working on **lunar, orbital, or deep-space missions**.
 
-First, run the development server:
+It uses **Gemini 1.5 Flash** from Google to:
+- 📄 Summarize complex mission documents
+- 🌐 Translate technical reports
+- 📊 Compare two mission specs
+- 📈 Analyze data-heavy files
 
-```bash
+---
+
+## ✨ Demo Video
+
+[![Watch the Demo](https://drive.google.com/file/d/1hUMyYQvk7eKVstkYhIOYU6RAtXrj3Aoz/view?usp=drive_link)
+
+---
+
+## ⚙️ Stack
+
+| Layer     | Tech                                      |
+|-----------|-------------------------------------------|
+| 🧠 AI      | Gemini 1.5 Flash                          |
+| 🖥 Backend | Python + Flask + Gemini API               |
+| 🌐 Frontend| Next.js (TypeScript, TailwindCSS)         |
+| 🧠 Prompting | Direct prompt injection into Gemini     |
+
+---
+
+## 🔮 Features
+
+### 1. ✍️ Summarize
+Summarizes long and technical research content into clear, concise summaries.
+
+**Prompt used:**
+Summarize this technical space research document precisely:
+
+{user_input}
+
+text
+
+---
+
+### 2. 🌐 Translate
+Translates any technical content into a user-specified language like Hindi, French, German, etc.
+
+**Prompt used:**
+Translate this scientific research text to {language}:
+
+{user_input}
+
+text
+
+---
+
+### 3. 📊 Compare
+Compares two mission specs or project plans, identifying key differences in technology, scale, or goals.
+
+**Prompt used:**
+Compare the following two space project documents and highlight key differences:
+
+Document A:
+{doc1}
+
+Document B:
+{doc2}
+
+text
+
+---
+
+### 4. 📈 Analyze
+Performs a general technical analysis to extract insights, patterns, or warnings from the content.
+
+**Prompt used:**
+Analyze this data-heavy mission report for anomalies, insights, and risks:
+
+{user_input}
+
+text
+
+---
+
+## 🧪 Gemini Model Used
+
+**Gemini 1.5 Flash**
+
+- Fast and accurate for short-to-medium form reasoning  
+- Handles technical documents with efficiency  
+- API Key-based access via `google-generativeai` SDK
+
+---
+
+## 🔐 .env File Example
+
+GOOGLE_API_KEY=your_gemini_api_key
+
+text
+
+---
+
+## 🧱 Project Structure
+
+/src
+/app
+page.tsx ← Elite UI (Tabs + Inputs + Result Card)
+/backend
+app.py ← Flask API using Gemini
+.env ← Gemini API Key
+global.css ← Tailwind with @import
+tailwind.config.ts ← Theme overrides
+README.md ← You're reading it!
+
+text
+
+---
+
+## 🚀 How to Run
+
+### 1. 🔙 Backend (Flask + Gemini)
+
+cd src/backend
+python3 -m venv venv
+source venv/bin/activate
+pip install -r requirements.txt
+python app.py
+
+text
+> Ensure `.env` is present with your `GOOGLE_API_KEY`.
+
+### 2. 🌐 Frontend (Next.js)
+
+cd src
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+text
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+---
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 🧠 Future Scope
 
-## Learn More
+- 🧬 Add document upload support (PDF/CSV)
+- 🌎 Real-time multilingual translation (auto-detect)
+- 📥 Save & export results as PDF
+- 💬 Chat-style interaction with Gemini memory
+- 🔐 User login for saved history
 
-To learn more about Next.js, take a look at the following resources:
+---
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## ✨ Credits
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Built by Mohammad Danish Ansari  
